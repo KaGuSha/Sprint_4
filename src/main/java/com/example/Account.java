@@ -1,9 +1,11 @@
 package com.example;
 
+import lombok.Getter;
 import lombok.NonNull;
 
 public class Account {
 
+    @Getter
     private final String name;
 
     public Account(@NonNull String name) {

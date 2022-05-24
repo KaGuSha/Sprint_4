@@ -1,5 +1,7 @@
 package com.example;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +31,7 @@ public class AccountTest {
     @Parameterized.Parameters
     public static Object[][] getName() {
         return new Object[][]{
-                {"Ю я", true, true, true, true},
+                {"Ю Я", true, true, true, true},
                 {"Ю Ли", true, true, true, true},
                 {"Александра Павлова", true, true, true, true},
                 {"Девятнадцат символо", true, true, true, true},
@@ -56,31 +58,42 @@ public class AccountTest {
     }
 
     @Test
+    @DisplayName("Проверка метода checkLengthName()")
+    @Description("Метод checkLengthName() возвращает true, если длина поля не меньше 3 и не больше 19 символов, в остальных случаях false. Ожидаемое значение передается в поле expectedLength")
     public void checkLengthName() {
         boolean actual = account.checkLengthName(name);
 
-        Assert.assertEquals(format("Результат %s отличается от ожидаемого значения. Ожидаемое значение: %s", actual, expectedLength), expectedLength, actual);
+        String message = format("Актуальное значение отличается от ожидаемого значения. %nАктуальное значение: %s %nОжидаемое значение:%s %nТестовая строка: %s%n", actual, expectedLength, account.getName());
+        Assert.assertEquals(message, expectedLength, actual);
     }
 
     @Test
+    @DisplayName("Проверка метода checkSpaceOnlyOne()")
+    @Description("Метод checkSpaceOnlyOne() возвращает true, если в поле есть только 1 пробел, в остальных случаях возвращает false. Ожидаемое значение передается в поле expectedSpace1")
     public void checkSpaceOnlyOne() {
         boolean actual = account.checkSpaceOnlyOne(name);
 
-        Assert.assertEquals(format("Результат %s отличается от ожидаемого значения. Ожидаемое значение: %s", actual, expectedSpace1), expectedSpace1, actual);
+        String message = format("Актуальное значение отличается от ожидаемого значения. %nАктуальное значение: %s %nОжидаемое значение:%s %nТестовая строка: %s%n", actual, expectedSpace1, account.getName());
+        Assert.assertEquals(message, expectedSpace1, actual);
     }
 
     @Test
+    @DisplayName("Проверка метода checkPlaceOfSpace()")
+    @Description("Метод checkSpaceOnlyOne() возвращает true, если пробел находится не в начале или не в конце, в остальных случаях возвращает false.Ожидаемое значение передается в поле expectedSpacePlace")
     public void checkPlaceOfSpace() {
         boolean actual = account.checkPlaceOfSpace(name);
 
-        Assert.assertEquals(format("Результат %s отличается от ожидаемого значения. Ожидаемое значение: %s", actual, expectedSpacePlace), expectedSpacePlace, actual);
+        String message = format("Актуальное значение отличается от ожидаемого значения. %nАктуальное значение: %s %nОжидаемое значение:%s %nТестовая строка: %s%n", actual, expectedSpacePlace, account.getName());
+        Assert.assertEquals(message, expectedSpacePlace, actual);
     }
 
     @Test
+    @DisplayName("Проверка метода checkNameToEmboss()")
+    @Description("Возвращается true, если у методов checkLengthName(),checkSpaceOnlyOne(), checkPlaceOfSpace() результат true. Ожидаемое значение передается в поле expectedToEmboss")
     public void checkNameToEmboss() {
         boolean actual = account.checkNameToEmboss();
 
-        Assert.assertEquals(format("Результат %s отличается от ожидаемого значения. Ожидаемое значение: %s", actual, expectedToEmboss), expectedToEmboss, actual);
+        String message = format("Актуальное значение отличается от ожидаемого значения. %nАктуальное значение: %s %nОжидаемое значение:%s %nТестовая строка: %s%n", actual, expectedToEmboss, account.getName());
+        Assert.assertEquals(message, expectedToEmboss, actual);
     }
-
 }
