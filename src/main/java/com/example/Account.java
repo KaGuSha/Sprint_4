@@ -1,8 +1,12 @@
+package com.example;
+
+import lombok.NonNull;
+
 public class Account {
 
     private final String name;
 
-    public Account(String name) {
+    public Account(@NonNull String name) {
         this.name = name;
     }
 
@@ -11,7 +15,7 @@ public class Account {
              Этот метод должен проверять, что сохранённая через конструктор строка соответствует требованиям.
              Если строка удовлетворяет условиям, метод возвращает true, иначе — false.
          */
-        if (checkLengthName(name) & checkPlaceOfSpace(name) & checkSpaceOnlyOne(name)) {
+        if (checkLengthName(name) & checkSpaceOnlyOne(name) & checkPlaceOfSpace(name)) {
             return true;
         }
         return false;
@@ -27,19 +31,23 @@ public class Account {
         return true;
     }
 
+    public boolean checkSpaceOnlyOne(String name) {
+
+        if (name.indexOf(" ") != name.lastIndexOf(" ")) {
+            return false;
+        }
+
+        if (name.indexOf(" ") == -1) {
+            return false;
+        }
+        return true;
+    }
+
+
     public boolean checkPlaceOfSpace(String name) {
         if (name.startsWith(" ") | name.endsWith(" ")) {
             return false;
         }
         return true;
     }
-
-    public boolean checkSpaceOnlyOne(String name) {
-
-        if (name.indexOf(" ") == name.lastIndexOf(" ")) {
-            return true;
-        }
-        return false;
-    }
-
 }
