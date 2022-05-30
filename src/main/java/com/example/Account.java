@@ -17,13 +17,13 @@ public class Account {
              Этот метод должен проверять, что сохранённая через конструктор строка соответствует требованиям.
              Если строка удовлетворяет условиям, метод возвращает true, иначе — false.
          */
-        if (checkLengthName(name) & checkSpaceOnlyOne(name) & checkPlaceOfSpace(name)) {
+        if (checkNameLength(name) & checkSpaceOnlyOne(name) & checkPlaceOfSpace(name)) {
             return true;
         }
         return false;
     }
 
-    public boolean checkLengthName(String name) {
+    public boolean checkNameLength(String name) {
         if (name.length() < 3) {
             return false;
         }
@@ -44,7 +44,6 @@ public class Account {
         }
         return true;
     }
-
 
     public boolean checkPlaceOfSpace(String name) {
         if (name.startsWith(" ") | name.endsWith(" ")) {
